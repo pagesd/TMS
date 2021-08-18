@@ -8,14 +8,12 @@ using TMS.IRepository;
 
 namespace TMS.IRepository
 {
-    //登录接口
-    public interface TMSILogi: TMSIRepository<UsersModel>
+    public interface JurisdictionITMS : TMSIRepository<MenuModel>
     {
-        //查询数据库账号密码
-        UsersModel Login(string admin, string pwd);
 
+        List<MenuModel> Use(int id);
+
+        List<MenuModel> Use2(int id);
 
     }
-
-
 }

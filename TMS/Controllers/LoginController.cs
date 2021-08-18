@@ -43,6 +43,7 @@ namespace TMS.Controllers
         {
             try
             {
+                
                 string num;
                 UsersModel list = _dal.Login(admin, pwd);
                 if (list != null)
@@ -63,7 +64,6 @@ namespace TMS.Controllers
             }
 
         }
-
 
     }
 }
