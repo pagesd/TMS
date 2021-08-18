@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,34 +11,32 @@ using TMS.Repository;
 namespace TMS.Controllers
 {
     /// <summary>
-    /// 基础
+    /// 人事
     /// </summary>
-    [Route("api/[controller]")]
-    [ApiController]
-    public class BaseController : ControllerBase
+    public class PersonnelController : Controller
     {
-        BaseITMS dal;
+        StaffITMS dal;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="_dal"></param>
-        public BaseController(BaseITMS _dal) {
+        public PersonnelController(StaffITMS _dal)
+        {
             dal = _dal;
         }
 
-        #region//车辆管理
+        #region//员工登记
         /// <summary>
-        /// 车辆显示
+        /// 人事显示
         /// </summary>
-        /// <param></param>
         /// <returns></returns>
-        [HttpPost, Route("vehicleShow")]
-        public IActionResult vehicleShow()
+        [HttpPost, Route("StaffShow")]
+        public IActionResult StaffShow()
         {
             try
             {
                 int num;
-                List<VehicleModel> list = dal.Vehicle();
+                List<StaffModel> list = dal.StaffShow();
                 if (list != null)
                 {
                     return Ok(list);
@@ -57,17 +54,18 @@ namespace TMS.Controllers
             }
         }
         /// <summary>
-        /// 车辆添加
+        /// 人事添加
         /// </summary>
         /// <param name="vm"></param>
         /// <returns></returns>
         [HttpPost, Route("vehicleAdd")]
-        public IActionResult vehicleAdd(VehicleModel vm)
+        public IActionResult StaffAdd(StaffModel vm)
         {
             try
             {
-                int list = dal.VehicleAdd(vm);
-                if (list!=0)
+                vm.create_time = DateTime.Now;
+                int list = dal.StaffAdd(vm);
+                if (list != 0)
                 {
                     return Ok("添加成功");
                 }
@@ -84,16 +82,16 @@ namespace TMS.Controllers
         }
 
         /// <summary>
-        /// 车辆反添
+        /// 人事反添
         /// </summary>
-        /// <param name="vehicleId"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPost, Route("vehicleft")]
-        public IActionResult vehicleft(int vehicleId)
-        { 
+        [HttpPost, Route("StaffFt")]
+        public IActionResult StaffFt(int id)
+        {
             try
             {
-                VehicleModel list = dal.VehicleFt(vehicleId);
+                StaffModel list = dal.StaffFt(id);
                 if (list != null)
                 {
                     return Ok(list);
@@ -110,17 +108,17 @@ namespace TMS.Controllers
             }
         }
         /// <summary>
-        /// 车辆修改
+        /// 人事修改
         /// </summary>
         /// <param name="vm"></param>
         /// <returns></returns>
-        [HttpPost, Route("vehicleEdit")]
-        public IActionResult vehicleEdit(VehicleModel vm)
+        [HttpPost, Route("StaffEdit")]
+        public IActionResult StaffEdit(StaffModel vm)
         {
             try
             {
-                int list = dal.VehicleEdit(vm);
-                if (list!=0)
+                int list = dal.StaffEdit(vm);
+                if (list != 0)
                 {
                     return Ok("添加成功");
                 }
@@ -129,23 +127,23 @@ namespace TMS.Controllers
                     return Ok("添加失败");
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw ex;
                 //return Ok("数据异常");
             }
         }
         /// <summary>
-        /// 车辆删除
+        /// 人事删除
         /// </summary>
-        /// <param name="vehicleId"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPost, Route("vehicleDel")]
-        public IActionResult vehicleDel(int vehicleId)
+        [HttpPost, Route("StaffDel")]
+        public IActionResult StaffDel(int id)
         {
             try
             {
-                int list = dal.VehicleDel(vehicleId);
+                int list = dal.StaffDel(id);
                 if (list != 0)
                 {
                     return Ok("删除成功");

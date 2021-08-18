@@ -8,6 +8,7 @@ using TMS.Repository;
 using TMS.Common;
 using DataCommon;
 using TMS.IRepository;
+using Dapper;
 
 namespace TMS.Repository
 {

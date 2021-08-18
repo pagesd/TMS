@@ -50,6 +50,136 @@
             <param name="vehicleId"></param>
             <returns></returns>
         </member>
+        <member name="T:TMS.Controllers.ContractController">
+            <summary>
+            合同
+            </summary>
+        </member>
+        <member name="F:TMS.Controllers.ContractController.dal">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:TMS.Controllers.ContractController.#ctor(TMS.IRepository.CarriageITMS)">
+            <summary>
+            
+            </summary>
+            <param name="_dal"></param>
+        </member>
+        <member name="M:TMS.Controllers.ContractController.ConsignorShow">
+            <summary>
+            货主显示
+            </summary>
+            <param></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ContractController.ConsignorAdd(TMS.Model.CarriagecontractModel)">
+            <summary>
+            货主添加
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ContractController.Consignorft(System.Int32)">
+            <summary>
+            货主反添
+            </summary>
+            <param name="vehicleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ContractController.ConsignorEdit(TMS.Model.CarriagecontractModel)">
+            <summary>
+            货主修改
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ContractController.ConsignorDel(System.Int32)">
+            <summary>
+            货主删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ContractController.ConsignorEdit1(System.Int32)">
+            <summary>
+            货主状态修改
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ContractController.ContractShow">
+            <summary>
+            承运显示
+            </summary>
+            <param></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ContractController.ContractAdd(TMS.Model.CarriagecontractModel)">
+            <summary>
+            承运添加
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ContractController.Contractft(System.Int32)">
+            <summary>
+            承运反添
+            </summary>
+            <param name="vehicleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ContractController.ContractEdit(TMS.Model.CarriagecontractModel)">
+            <summary>
+            承运修改
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ContractController.ContractDel(System.Int32)">
+            <summary>
+            承运删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ContractController.ContractEdit1(System.Int32)">
+            <summary>
+            承运状态修改
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.Controllers.JurisdictionController">
+            <summary>
+            菜单管理
+            </summary>
+        </member>
+        <member name="F:TMS.Controllers.JurisdictionController._dal">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:TMS.Controllers.JurisdictionController.#ctor(TMS.IRepository.JurisdictionITMS)">
+            <summary>
+            
+            </summary>
+            <param name="dal"></param>
+        </member>
+        <member name="M:TMS.Controllers.JurisdictionController.Useer(System.Int32)">
+            <summary>
+            权限查询
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.JurisdictionController.User2(System.Int32)">
+            <summary>
+            二级菜单查询
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:TMS.Controllers.LoginController">
             <summary>
             登录
@@ -72,6 +202,51 @@
             </summary>
             <param name="admin"></param>
             <param name="pwd"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.Controllers.PersonnelController">
+            <summary>
+            人事
+            </summary>
+        </member>
+        <member name="M:TMS.Controllers.PersonnelController.#ctor(TMS.IRepository.StaffITMS)">
+            <summary>
+            
+            </summary>
+            <param name="_dal"></param>
+        </member>
+        <member name="M:TMS.Controllers.PersonnelController.StaffShow">
+            <summary>
+            人事显示
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.PersonnelController.StaffAdd(TMS.Model.StaffModel)">
+            <summary>
+            人事添加
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.PersonnelController.StaffFt(System.Int32)">
+            <summary>
+            人事反添
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.PersonnelController.StaffEdit(TMS.Model.StaffModel)">
+            <summary>
+            人事修改
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.PersonnelController.StaffDel(System.Int32)">
+            <summary>
+            人事删除
+            </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="T:TMS.Program">
