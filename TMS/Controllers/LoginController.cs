@@ -8,6 +8,7 @@ using TMS.IRepository;
 using TMS.Model;
 using TMS.Common;
 using TMS.Repository;
+using TMS.JWT;
 
 namespace TMS.Controllers
 {
@@ -26,10 +27,16 @@ namespace TMS.Controllers
         /// <summary>
         /// 
         /// </summary>
+        public JWT_ _jwt;
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="dal"></param>
-        public LoginController(TMSILogi dal)
+        /// <param name="wt_"></param>
+        public LoginController(TMSILogi dal,JWT_ wt_)
         {
             _dal = dal;
+            _jwt = wt_;
         }
 
         /// <summary>
@@ -44,19 +51,18 @@ namespace TMS.Controllers
             try
             {
                 
-                string num;
                 UsersModel list = _dal.Login(admin, pwd);
                 if (list != null)
                 {
                     //登录成功
-                    num = "登录成功";
+                    return Ok(new {data=list,token=_jwt.GetJWT() });
                 }
                 else
                 {
                     //登录失败
-                    num = "登录失败";
+                    return Ok("登录失败");
                 }
-                return Ok(num);
+                
             }
             catch (Exception)
             {

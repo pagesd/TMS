@@ -6,41 +6,40 @@ using System.Linq;
 using System.Threading.Tasks;
 using TMS.IRepository;
 using TMS.Model;
-using TMS.Common;
-using TMS.Repository;
-using Microsoft.AspNetCore.Authorization;
 
 namespace TMS.Controllers
 {
     /// <summary>
-    /// 基础
+    /// 通用合同
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class BaseController : ControllerBase
+    public class UniversalController : ControllerBase
     {
-        BaseITMS dal;
+
+        UniversalITMS dal;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="_dal"></param>
-        public BaseController(BaseITMS _dal) {
+        public UniversalController(UniversalITMS _dal)
+        {
             dal = _dal;
         }
 
-        #region//车辆管理
+        #region//通用合同管理
         /// <summary>
-        /// 车辆显示
+        /// 通用合同显示
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        [HttpPost, Route("vehicleShow"), Authorize]
-        public IActionResult vehicleShow()
+        [HttpPost, Route("UniversalShow")]
+        public IActionResult UniversalShow()
         {
             try
             {
                 int num;
-                List<VehicleModel> list = dal.Vehicle();
+                List<UniversalModel> list = dal.UniversalShow();
                 if (list != null)
                 {
                     return Ok(list);
@@ -58,17 +57,21 @@ namespace TMS.Controllers
             }
         }
         /// <summary>
-        /// 车辆添加
+        /// 通用添加
         /// </summary>
         /// <param name="vm"></param>
         /// <returns></returns>
-        [HttpPost, Route("vehicleAdd")]
-        public IActionResult vehicleAdd(VehicleModel vm)
+        [HttpPost, Route("UniversalAdd")]
+        public IActionResult UniversalAdd(UniversalModel vm)
         {
             try
             {
-                int list = dal.VehicleAdd(vm);
-                if (list!=0)
+                vm.contracId = "CY" + DateTime.Now.ToString("yyyyMMddhhmm");
+                vm.creation_time = DateTime.Now;
+                vm.state = 0;
+                vm.approver = "-";
+                int list = dal.UniversalAdd(vm);
+                if (list != 0)
                 {
                     return Ok("添加成功");
                 }
@@ -85,16 +88,16 @@ namespace TMS.Controllers
         }
 
         /// <summary>
-        /// 车辆反添
+        /// 通用反添
         /// </summary>
         /// <param name="vehicleId"></param>
         /// <returns></returns>
-        [HttpPost, Route("vehicleft")]
-        public IActionResult vehicleft(int vehicleId)
-        { 
+        [HttpPost, Route("Universalft")]
+        public IActionResult Universalft(int vehicleId)
+        {
             try
             {
-                VehicleModel list = dal.VehicleFt(vehicleId);
+                UniversalModel list = dal.UniversalFt(vehicleId);
                 if (list != null)
                 {
                     return Ok(list);
@@ -111,42 +114,42 @@ namespace TMS.Controllers
             }
         }
         /// <summary>
-        /// 车辆修改
+        /// 通用修改
         /// </summary>
         /// <param name="vm"></param>
         /// <returns></returns>
-        [HttpPost, Route("vehicleEdit")]
-        public IActionResult vehicleEdit(VehicleModel vm)
+        [HttpPost, Route("UniversalEdit")]
+        public IActionResult UniversalEdit(UniversalModel vm)
         {
             try
             {
-                int list = dal.VehicleEdit(vm);
-                if (list!=0)
+                int list = dal.UniversalEdit(vm);
+                if (list != 0)
                 {
-                    return Ok("添加成功");
+                    return Ok("修改成功");
                 }
                 else
                 {
-                    return Ok("添加失败");
+                    return Ok("修改失败");
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw ex;
                 //return Ok("数据异常");
             }
         }
         /// <summary>
-        /// 车辆删除
+        /// 通用删除
         /// </summary>
-        /// <param name="vehicleId"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        [HttpPost, Route("vehicleDel")]
-        public IActionResult vehicleDel(int vehicleId)
+        [HttpPost, Route("UniversalDel")]
+        public IActionResult UniversalDel(int id)
         {
             try
             {
-                int list = dal.VehicleDel(vehicleId);
+                int list = dal.UniversalDel(id);
                 if (list != 0)
                 {
                     return Ok("删除成功");
@@ -162,9 +165,35 @@ namespace TMS.Controllers
                 return Ok("数据异常");
             }
         }
+
+        /// <summary>
+        /// 通用状态修改
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpPost, Route("UniversalEdit1")]
+        public IActionResult UniversalEdit1(int id)
+        {
+            try
+            {
+                int list = dal.UniversalEdit1(id);
+                if (list != 0)
+                {
+                    return Ok("修改成功");
+                }
+                else
+                {
+                    return Ok("修改失败");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+                //return Ok("数据异常");
+            }
+        }
+
         #endregion
-
-
 
     }
 }
