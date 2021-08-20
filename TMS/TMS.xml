@@ -57,12 +57,12 @@
         </member>
         <member name="F:TMS.Controllers.ContractController.dal">
             <summary>
-            
+            //承运/货主
             </summary>
         </member>
         <member name="M:TMS.Controllers.ContractController.#ctor(TMS.IRepository.CarriageITMS)">
             <summary>
-            
+            通用合同
             </summary>
             <param name="_dal"></param>
         </member>
@@ -190,11 +190,17 @@
             
             </summary>
         </member>
-        <member name="M:TMS.Controllers.LoginController.#ctor(TMS.IRepository.TMSILogi)">
+        <member name="F:TMS.Controllers.LoginController._jwt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:TMS.Controllers.LoginController.#ctor(TMS.IRepository.TMSILogi,TMS.JWT.JWT_)">
             <summary>
             
             </summary>
             <param name="dal"></param>
+            <param name="wt_"></param>
         </member>
         <member name="M:TMS.Controllers.LoginController.Login2(System.String,System.String)">
             <summary>
@@ -247,6 +253,76 @@
             人事删除
             </summary>
             <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.Controllers.UniversalController">
+            <summary>
+            通用合同
+            </summary>
+        </member>
+        <member name="M:TMS.Controllers.UniversalController.#ctor(TMS.IRepository.UniversalITMS)">
+            <summary>
+            
+            </summary>
+            <param name="_dal"></param>
+        </member>
+        <member name="M:TMS.Controllers.UniversalController.UniversalShow">
+            <summary>
+            通用合同显示
+            </summary>
+            <param></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.UniversalController.UniversalAdd(TMS.Model.UniversalModel)">
+            <summary>
+            通用添加
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.UniversalController.Universalft(System.Int32)">
+            <summary>
+            通用反添
+            </summary>
+            <param name="vehicleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.UniversalController.UniversalEdit(TMS.Model.UniversalModel)">
+            <summary>
+            通用修改
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.UniversalController.UniversalDel(System.Int32)">
+            <summary>
+            通用删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.UniversalController.UniversalEdit1(System.Int32)">
+            <summary>
+            通用状态修改
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.JWT.JWT_">
+            <summary>
+            jwt认证
+            </summary>
+        </member>
+        <member name="M:TMS.JWT.JWT_.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            
+            </summary>
+            <param name="_configuration"></param>
+        </member>
+        <member name="M:TMS.JWT.JWT_.GetJWT">
+            <summary>
+            jwt认证
+            </summary>
             <returns></returns>
         </member>
         <member name="T:TMS.Program">

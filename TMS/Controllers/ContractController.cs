@@ -19,17 +19,18 @@ namespace TMS.Controllers
     public class ContractController : ControllerBase
     {
         /// <summary>
-        /// 
+        /// //承运/货主
         /// </summary>
         CarriageITMS dal;
         /// <summary>
-        /// 
+        /// 通用合同
         /// </summary>
         /// <param name="_dal"></param>
         public ContractController(CarriageITMS _dal)
         {
             dal = _dal;
         }
+
 
         #region//货主合同管理
         /// <summary>
@@ -70,6 +71,10 @@ namespace TMS.Controllers
         {
             try
             {
+                vm.contractId = "H" + DateTime.Now.ToString("yyyyMMddhhmm");
+                vm.creation_time = DateTime.Now;
+                vm.state = 0;
+                vm.approval = "-";
                 vm.zt = 1;
                 int list = dal.ConsignorAdd(vm);
                 if (list != 0)
@@ -235,6 +240,10 @@ namespace TMS.Controllers
         {
             try
             {
+                vm.contractId = "H" + DateTime.Now.ToString("yyyyMMddhhmm");
+                vm.creation_time = DateTime.Now;
+                vm.state = 0;
+                vm.approval = "-";
                 vm.zt=2;
                 int list = dal.CarriageAdd(vm);
                 if (list != 0)
