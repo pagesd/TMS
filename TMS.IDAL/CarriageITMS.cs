@@ -23,6 +23,11 @@ namespace TMS.IRepository
         int CarriageEdit(CarriagecontractModel vm);
         //修改状态
         int CarriageEdit1(int id);
+        //审批
+        //通过
+        int CarriageEditTG(int id);
+        //拒绝
+        int CarriageEditJJ(int id);
         #endregion
 
         #region//货主合同管理
@@ -38,6 +43,11 @@ namespace TMS.IRepository
         int ConsignorEdit(CarriagecontractModel vm);
         //修改状态
         int ConsignorEdit1(int id);
+        //审批
+        //通过
+        int ConsignorEditTG(int id);
+        //拒绝
+        int ConsignorEditJJ(int id);
         #endregion
 
     }

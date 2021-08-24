@@ -207,7 +207,7 @@ namespace TMS.Controllers
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        [HttpPost, Route("ContractShow")]
+        [HttpGet, Route("ContractShow")]
         public IActionResult ContractShow()
         {
             try

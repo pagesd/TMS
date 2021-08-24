@@ -4,6 +4,43 @@
         <name>TMS</name>
     </assembly>
     <members>
+        <member name="T:TMS.Controllers.ApproveController">
+            <summary>
+            审批
+            </summary>
+        </member>
+        <member name="F:TMS.Controllers.ApproveController.dal">
+            <summary>
+            //承运/货主
+            </summary>
+        </member>
+        <member name="M:TMS.Controllers.ApproveController.#ctor(TMS.IRepository.CarriageITMS)">
+            <summary>
+            通用合同
+            </summary>
+            <param name="_dal"></param>
+        </member>
+        <member name="M:TMS.Controllers.ApproveController.ConsignorShow">
+            <summary>
+            货主显示
+            </summary>
+            <param></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ApproveController.ConsignorEditTG(System.Int32)">
+            <summary>
+            货主审核成功
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ApproveController.ConsignorEditJJ(System.Int32)">
+            <summary>
+            货主审核失败
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:TMS.Controllers.BaseController">
             <summary>
             基础
@@ -185,6 +222,16 @@
             登录
             </summary>
         </member>
+        <member name="F:TMS.Controllers.LoginController.m_logger">
+            <summary>
+            日志器
+            </summary>
+        </member>
+        <member name="F:TMS.Controllers.LoginController.m_LoggerFactory">
+            <summary>
+            日志器工厂
+            </summary>
+        </member>
         <member name="F:TMS.Controllers.LoginController._dal">
             <summary>
             
@@ -195,7 +242,7 @@
             
             </summary>
         </member>
-        <member name="M:TMS.Controllers.LoginController.#ctor(TMS.IRepository.TMSILogi,TMS.JWT.JWT_)">
+        <member name="M:TMS.Controllers.LoginController.#ctor(TMS.IRepository.TMSILogi,TMS.JWT.JWT_,Microsoft.Extensions.Logging.ILoggerFactory)">
             <summary>
             
             </summary>
@@ -253,6 +300,136 @@
             人事删除
             </summary>
             <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.Controllers.ReceivingController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:TMS.Controllers.ReceivingController.dal">
+            <summary>
+            物资领用
+            </summary>
+        </member>
+        <member name="M:TMS.Controllers.ReceivingController.#ctor(TMS.IRepository.ReceivingITMS)">
+            <summary>
+            物资领用
+            </summary>
+            <param name="_dal"></param>
+        </member>
+        <member name="M:TMS.Controllers.ReceivingController.ReceivingShow">
+            <summary>
+            显示
+            </summary>
+            <param></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ReceivingController.ReceivingAdd(TMS.Model.ReceivingModel)">
+            <summary>
+            添加
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ReceivingController.ReceivingFt(System.Int32)">
+            <summary>
+            反添
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ReceivingController.ReceivingEdit(TMS.Model.ReceivingModel)">
+            <summary>
+            修改
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ReceivingController.ReceivingDel(System.Int32)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ReceivingController.ReceivingEdit1(System.Int32)">
+            <summary>
+            状态修改
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.Controllers.SuppliesController">
+            <summary>
+            物资
+            </summary>
+        </member>
+        <member name="F:TMS.Controllers.SuppliesController.dal">
+            <summary>
+            物资
+            </summary>
+        </member>
+        <member name="M:TMS.Controllers.SuppliesController.#ctor(TMS.IRepository.SuppliesITMS)">
+            <summary>
+            物资
+            </summary>
+            <param name="_dal"></param>
+        </member>
+        <member name="M:TMS.Controllers.SuppliesController.PurchaseShow">
+            <summary>
+            显示
+            </summary>
+            <param></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SuppliesController.PurchaseAdd(TMS.Model.PurchaseModel)">
+            <summary>
+            添加
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SuppliesController.PurchaseFt(System.Int32)">
+            <summary>
+            反添
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SuppliesController.PurchaseEdit(TMS.Model.PurchaseModel)">
+            <summary>
+            修改
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SuppliesController.PurchaseDel(System.Int32)">
+            <summary>
+            删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SuppliesController.PurchaseEdit1(System.Int32)">
+            <summary>
+            状态修改
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SuppliesController.WarehousingEdit(TMS.Model.PurchaseModel)">
+            <summary>
+            入库修改
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SuppliesController.WarehousingShow">
+            <summary>
+            显示
+            </summary>
+            <param></param>
             <returns></returns>
         </member>
         <member name="T:TMS.Controllers.UniversalController">
