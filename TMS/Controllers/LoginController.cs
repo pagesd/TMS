@@ -9,6 +9,7 @@ using TMS.Model;
 using TMS.Common;
 using TMS.Repository;
 using TMS.JWT;
+using Microsoft.Extensions.Logging;
 
 namespace TMS.Controllers
 {
@@ -20,6 +21,17 @@ namespace TMS.Controllers
     
     public class LoginController : ControllerBase
     {
+
+        /// <summary>
+        /// 日志器
+        /// </summary>
+        private ILogger m_logger;
+        /// <summary>
+        /// 日志器工厂
+        /// </summary>
+        private ILoggerFactory m_LoggerFactory;
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -33,10 +45,14 @@ namespace TMS.Controllers
         /// </summary>
         /// <param name="dal"></param>
         /// <param name="wt_"></param>
-        public LoginController(TMSILogi dal,JWT_ wt_)
+        public LoginController(TMSILogi dal,JWT_ wt_, ILoggerFactory loggerFactory)
         {
             _dal = dal;
             _jwt = wt_;
+
+            m_LoggerFactory = loggerFactory;
+            // 获取指定名字的日志器
+            m_logger = m_LoggerFactory.CreateLogger("AppLogger");
         }
 
         /// <summary>
@@ -64,8 +80,9 @@ namespace TMS.Controllers
                 }
                 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                m_logger.LogError(ex, "捕捉到异常");
                 return Ok("数据异常");
             }
 
