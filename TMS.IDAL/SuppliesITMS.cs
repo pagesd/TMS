@@ -8,7 +8,9 @@ using TMS.IRepository;
 
 namespace TMS.IRepository
 {
-    //物资采购
+    /// <summary>
+    /// 物资采购
+    /// </summary>
     public interface SuppliesITMS : TMSIRepository<PurchaseModel>
     {
         #region//物资采购

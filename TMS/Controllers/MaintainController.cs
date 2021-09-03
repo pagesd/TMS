@@ -4,28 +4,30 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TMS.IRepository;
+using TMS.IRepository.Maintain;
+using TMS.Model.Maintain;
+using TMS.IRepository.Settlement;
 using TMS.Model;
 using TMS.Common;
 using TMS.Repository;
 using Microsoft.AspNetCore.Authorization;
 using TMS.IRepository.Basics;
 
+
 namespace TMS.Controllers
 {
     /// <summary>
-    /// 基础
+    /// 维护
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class BaseController : ControllerBase
+    public class MaintainController : ControllerBase
     {
-        BaseITMS dal;
-        CargoownerITMS dal_c;
-        OutsourcingITMS dal_o;
-        FuelcostsITMS dal_f;
-        LineITMS dal_l;
-
+        RecordITMS dal;
+        MaintenanceITMS dal_c;
+        ViolationITMS dal_o;
+        AccidentITMS dal_f;
+        TireuseITMS dal_l;
         /// <summary>
         /// 
         /// </summary>
@@ -34,7 +36,8 @@ namespace TMS.Controllers
         /// <param name="o_dal"></param>
         /// <param name="f_dal"></param>
         /// <param name="l_dal"></param>
-        public BaseController(BaseITMS _dal,CargoownerITMS c_dal, OutsourcingITMS o_dal, FuelcostsITMS f_dal, LineITMS l_dal) {
+        public MaintainController(RecordITMS _dal, MaintenanceITMS c_dal, ViolationITMS o_dal, AccidentITMS f_dal, TireuseITMS l_dal)
+        {
             dal = _dal;
             dal_c = c_dal;
             dal_o = o_dal;
@@ -42,19 +45,19 @@ namespace TMS.Controllers
             dal_l = l_dal;
         }
 
-        #region//车辆管理
+        #region//维修记录
         /// <summary>
-        /// 车辆显示
+        /// 维修记录显示
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        [HttpPost, Route("vehicleShow"), Authorize]
-        public IActionResult vehicleShow()
+        [HttpPost, Route("RecordShow"), Authorize]
+        public IActionResult RecordShow()
         {
             try
             {
                 int num;
-                List<VehicleModel> list = dal.Vehicle();
+                List<MaintainModel> list = dal.RecordShow();
                 if (list != null)
                 {
                     return Ok(list);
@@ -72,17 +75,17 @@ namespace TMS.Controllers
             }
         }
         /// <summary>
-        /// 车辆添加
+        /// 维修记录添加
         /// </summary>
         /// <param name="vm"></param>
         /// <returns></returns>
-        [HttpPost, Route("vehicleAdd")]
-        public IActionResult vehicleAdd(VehicleModel vm)
+        [HttpPost, Route("RecordAdd")]
+        public IActionResult RecordAdd(MaintainModel vm)
         {
             try
             {
-                int list = dal.VehicleAdd(vm);
-                if (list!=0)
+                int list = dal.RecordAdd(vm);
+                if (list != 0)
                 {
                     return Ok("添加成功");
                 }
@@ -99,16 +102,16 @@ namespace TMS.Controllers
         }
 
         /// <summary>
-        /// 车辆反添
+        /// 维修记录反添
         /// </summary>
-        /// <param name="vehicleId"></param>
+        /// <param name="RecordId"></param>
         /// <returns></returns>
-        [HttpPost, Route("vehicleft")]
-        public IActionResult vehicleft(int vehicleId)
-        { 
+        [HttpPost, Route("Recordft")]
+        public IActionResult Recordft(int RecordId)
+        {
             try
             {
-                VehicleModel list = dal.VehicleFt(vehicleId);
+                MaintainModel list = dal.RecordFt(RecordId);
                 if (list != null)
                 {
                     return Ok(list);
@@ -125,17 +128,17 @@ namespace TMS.Controllers
             }
         }
         /// <summary>
-        /// 车辆修改
+        /// 维修记录修改
         /// </summary>
         /// <param name="vm"></param>
         /// <returns></returns>
-        [HttpPost, Route("vehicleEdit")]
-        public IActionResult vehicleEdit(VehicleModel vm)
+        [HttpPost, Route("RecordEdit")]
+        public IActionResult RecordEdit(MaintainModel vm)
         {
             try
             {
-                int list = dal.VehicleEdit(vm);
-                if (list!=0)
+                int list = dal.RecordEdit(vm);
+                if (list != 0)
                 {
                     return Ok("添加成功");
                 }
@@ -144,23 +147,23 @@ namespace TMS.Controllers
                     return Ok("添加失败");
                 }
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 throw ex;
                 //return Ok("数据异常");
             }
         }
         /// <summary>
-        /// 车辆删除
+        /// 维修记录删除
         /// </summary>
-        /// <param name="vehicleId"></param>
+        /// <param name="RecordId"></param>
         /// <returns></returns>
-        [HttpPost, Route("vehicleDel")]
-        public IActionResult vehicleDel(int vehicleId)
+        [HttpPost, Route("RecordDel")]
+        public IActionResult RecordDel(int RecordId)
         {
             try
             {
-                int list = dal.VehicleDel(vehicleId);
+                int list = dal.RecordDel(RecordId);
                 if (list != 0)
                 {
                     return Ok("删除成功");
@@ -178,19 +181,19 @@ namespace TMS.Controllers
         }
         #endregion
 
-        #region//货主管理
+        #region//保养记录
         /// <summary>
-        /// 货主显示
+        /// 保养记录显示
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        [HttpPost, Route("CargoownerShow"), Authorize]
-        public IActionResult CargoownerShow()
+        [HttpPost, Route("MaintenanceShow"), Authorize]
+        public IActionResult MaintenanceShow()
         {
             try
             {
                 int num;
-                List<ShipperModel> list = dal_c.CargoownerShow();
+                List<UpkeepModel> list = dal_c.MaintenanceShow();
                 if (list != null)
                 {
                     return Ok(list);
@@ -208,16 +211,16 @@ namespace TMS.Controllers
             }
         }
         /// <summary>
-        /// 货主添加
+        /// 保养记录添加
         /// </summary>
         /// <param name="vm"></param>
         /// <returns></returns>
-        [HttpPost, Route("CargoownerAdd")]
-        public IActionResult CargoownerAdd(ShipperModel vm)
+        [HttpPost, Route("MaintenanceAdd")]
+        public IActionResult MaintenanceAdd(UpkeepModel vm)
         {
             try
             {
-                int list = dal_c.CargoownerAdd(vm);
+                int list = dal_c.MaintenanceAdd(vm);
                 if (list != 0)
                 {
                     return Ok("添加成功");
@@ -235,16 +238,16 @@ namespace TMS.Controllers
         }
 
         /// <summary>
-        /// 货主反添
+        /// 保养记录反添
         /// </summary>
-        /// <param name="vehicleId"></param>
+        /// <param name="RecordId"></param>
         /// <returns></returns>
-        [HttpPost, Route("CargoownerFt")]
-        public IActionResult CargoownerFt(int vehicleId)
+        [HttpPost, Route("Maintenanceft")]
+        public IActionResult Maintenanceft(int RecordId)
         {
             try
             {
-                ShipperModel list = dal_c.CargoownerFt(vehicleId);
+                UpkeepModel list = dal_c.MaintenanceFt(RecordId);
                 if (list != null)
                 {
                     return Ok(list);
@@ -261,16 +264,16 @@ namespace TMS.Controllers
             }
         }
         /// <summary>
-        /// 货主修改
+        /// 保养记录修改
         /// </summary>
         /// <param name="vm"></param>
         /// <returns></returns>
-        [HttpPost, Route("CargoownerEdit")]
-        public IActionResult CargoownerEdit(ShipperModel vm)
+        [HttpPost, Route("MaintenanceEdit")]
+        public IActionResult MaintenanceEdit(UpkeepModel vm)
         {
             try
             {
-                int list = dal_c.CargoownerEdit(vm);
+                int list = dal_c.MaintenanceEdit(vm);
                 if (list != 0)
                 {
                     return Ok("添加成功");
@@ -287,16 +290,16 @@ namespace TMS.Controllers
             }
         }
         /// <summary>
-        /// 货主删除
+        /// 保养记录删除
         /// </summary>
-        /// <param name="vehicleId"></param>
+        /// <param name="RecordId"></param>
         /// <returns></returns>
-        [HttpPost, Route("CargoownerDel")]
-        public IActionResult CargoownerDel(int vehicleId)
+        [HttpPost, Route("MaintenanceDel")]
+        public IActionResult MaintenanceDel(int RecordId)
         {
             try
             {
-                int list = dal_c.CargoownerDel(vehicleId);
+                int list = dal_c.MaintenanceDel(RecordId);
                 if (list != 0)
                 {
                     return Ok("删除成功");
@@ -314,19 +317,19 @@ namespace TMS.Controllers
         }
         #endregion
 
-        #region//外协管理
+        #region//违章记录
         /// <summary>
-        /// 货主显示
+        /// 违章记录显示
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        [HttpPost, Route("OutsourcingShow"), Authorize]
-        public IActionResult OutsourcingShow()
+        [HttpPost, Route("ViolationShow"), Authorize]
+        public IActionResult ViolationShow()
         {
             try
             {
                 int num;
-                List<OutsourceModel> list = dal_o.OutsourcingShow();
+                List<ViolationModel> list = dal_o.ViolationShow();
                 if (list != null)
                 {
                     return Ok(list);
@@ -344,16 +347,16 @@ namespace TMS.Controllers
             }
         }
         /// <summary>
-        /// 外协添加
+        /// 违章记录添加
         /// </summary>
         /// <param name="vm"></param>
         /// <returns></returns>
-        [HttpPost, Route("OutsourcingAdd")]
-        public IActionResult OutsourcingAdd(OutsourceModel vm)
+        [HttpPost, Route("ViolationAdd")]
+        public IActionResult ViolationAdd(ViolationModel vm)
         {
             try
             {
-                int list = dal_o.OutsourcingAdd(vm);
+                int list = dal_o.ViolationAdd(vm);
                 if (list != 0)
                 {
                     return Ok("添加成功");
@@ -371,16 +374,16 @@ namespace TMS.Controllers
         }
 
         /// <summary>
-        /// 外协反添
+        /// 违章记录反添
         /// </summary>
-        /// <param name="vehicleId"></param>
+        /// <param name="RecordId"></param>
         /// <returns></returns>
-        [HttpPost, Route("OutsourcingFt")]
-        public IActionResult OutsourcingFt(int vehicleId)
+        [HttpPost, Route("Violationft")]
+        public IActionResult Violationft(int RecordId)
         {
             try
             {
-                OutsourceModel list = dal_o.OutsourcingFt(vehicleId);
+                ViolationModel list = dal_o.ViolationFt(RecordId);
                 if (list != null)
                 {
                     return Ok(list);
@@ -397,16 +400,16 @@ namespace TMS.Controllers
             }
         }
         /// <summary>
-        /// 外协修改
+        /// 违章记录修改
         /// </summary>
         /// <param name="vm"></param>
         /// <returns></returns>
-        [HttpPost, Route("OutsourcingEdit")]
-        public IActionResult OutsourcingEdit(OutsourceModel vm)
+        [HttpPost, Route("ViolationEdit")]
+        public IActionResult ViolationEdit(ViolationModel vm)
         {
             try
             {
-                int list = dal_o.OutsourcingEdit(vm);
+                int list = dal_o.ViolationEdit(vm);
                 if (list != 0)
                 {
                     return Ok("添加成功");
@@ -423,16 +426,16 @@ namespace TMS.Controllers
             }
         }
         /// <summary>
-        /// 外协删除
+        /// 违章记录删除
         /// </summary>
-        /// <param name="vehicleId"></param>
+        /// <param name="RecordId"></param>
         /// <returns></returns>
-        [HttpPost, Route("OutsourcingDel")]
-        public IActionResult OutsourcingDel(int vehicleId)
+        [HttpPost, Route("ViolationDel")]
+        public IActionResult ViolationDel(int RecordId)
         {
             try
             {
-                int list = dal_o.OutsourcingDel(vehicleId);
+                int list = dal_o.ViolationDel(RecordId);
                 if (list != 0)
                 {
                     return Ok("删除成功");
@@ -450,19 +453,19 @@ namespace TMS.Controllers
         }
         #endregion
 
-        #region//油费管理
+        #region//事故记录
         /// <summary>
-        /// 油费显示
+        /// 事故记录显示
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        [HttpPost, Route("FuelcostsShow"), Authorize]
-        public IActionResult FuelcostsShow()
+        [HttpPost, Route("AccidentShow"), Authorize]
+        public IActionResult AccidentShow()
         {
             try
             {
                 int num;
-                List<FuelModel> list = dal_f.FuelcostsShow();
+                List<AccidentModel> list = dal_f.AccidentShow();
                 if (list != null)
                 {
                     return Ok(list);
@@ -480,16 +483,16 @@ namespace TMS.Controllers
             }
         }
         /// <summary>
-        /// 油费添加
+        /// 事故记录添加
         /// </summary>
         /// <param name="vm"></param>
         /// <returns></returns>
-        [HttpPost, Route("FuelcostsAdd")]
-        public IActionResult FuelcostsAdd(FuelModel vm)
+        [HttpPost, Route("AccidentAdd")]
+        public IActionResult AccidentAdd(AccidentModel vm)
         {
             try
             {
-                int list = dal_f.FuelcostsAdd(vm);
+                int list = dal_f.AccidentAdd(vm);
                 if (list != 0)
                 {
                     return Ok("添加成功");
@@ -507,16 +510,16 @@ namespace TMS.Controllers
         }
 
         /// <summary>
-        /// 油费反添
+        /// 事故记录反添
         /// </summary>
-        /// <param name="vehicleId"></param>
+        /// <param name="RecordId"></param>
         /// <returns></returns>
-        [HttpPost, Route("FuelcostsFt")]
-        public IActionResult FuelcostsFt(int vehicleId)
+        [HttpPost, Route("Accidentft")]
+        public IActionResult Accidentft(int RecordId)
         {
             try
             {
-                FuelModel list = dal_f.FuelcostsFt(vehicleId);
+                AccidentModel list = dal_f.AccidentFt(RecordId);
                 if (list != null)
                 {
                     return Ok(list);
@@ -533,16 +536,16 @@ namespace TMS.Controllers
             }
         }
         /// <summary>
-        /// 油费修改
+        /// 事故记录修改
         /// </summary>
         /// <param name="vm"></param>
         /// <returns></returns>
-        [HttpPost, Route("FuelcostsEdit")]
-        public IActionResult FuelcostsEdit(FuelModel vm)
+        [HttpPost, Route("AccidentEdit")]
+        public IActionResult AccidentEdit(AccidentModel vm)
         {
             try
             {
-                int list = dal_f.FuelcostsEdit(vm);
+                int list = dal_f.AccidentEdit(vm);
                 if (list != 0)
                 {
                     return Ok("添加成功");
@@ -559,16 +562,16 @@ namespace TMS.Controllers
             }
         }
         /// <summary>
-        /// 油费删除
+        /// 事故记录删除
         /// </summary>
-        /// <param name="vehicleId"></param>
+        /// <param name="RecordId"></param>
         /// <returns></returns>
-        [HttpPost, Route("FuelcostsDel")]
-        public IActionResult FuelcostsDel(int vehicleId)
+        [HttpPost, Route("AccidentDel")]
+        public IActionResult AccidentDel(int RecordId)
         {
             try
             {
-                int list = dal_f.FuelcostsDel(vehicleId);
+                int list = dal_f.AccidentDel(RecordId);
                 if (list != 0)
                 {
                     return Ok("删除成功");
@@ -586,19 +589,19 @@ namespace TMS.Controllers
         }
         #endregion
 
-        #region//线路管理
+        #region//轮胎使用记录
         /// <summary>
-        /// 线路显示
+        /// 轮胎使用记录显示
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        [HttpPost, Route("LineShow"), Authorize]
-        public IActionResult LineShow()
+        [HttpPost, Route("TireuseShow"), Authorize]
+        public IActionResult TireuseShow()
         {
             try
             {
                 int num;
-                List<PathModel> list = dal_l.LineShow();
+                List<TyreModel> list = dal_l.TireuseShow();
                 if (list != null)
                 {
                     return Ok(list);
@@ -616,16 +619,16 @@ namespace TMS.Controllers
             }
         }
         /// <summary>
-        /// 线路添加
+        /// 轮胎使用记录添加
         /// </summary>
         /// <param name="vm"></param>
         /// <returns></returns>
-        [HttpPost, Route("LineAdd")]
-        public IActionResult LineAdd(PathModel vm)
+        [HttpPost, Route("TireuseAdd")]
+        public IActionResult TireuseAdd(TyreModel vm)
         {
             try
             {
-                int list = dal_l.LineAdd(vm);
+                int list = dal_l.TireuseAdd(vm);
                 if (list != 0)
                 {
                     return Ok("添加成功");
@@ -643,16 +646,16 @@ namespace TMS.Controllers
         }
 
         /// <summary>
-        /// 线路反添
+        /// 轮胎使用记录反添
         /// </summary>
-        /// <param name="vehicleId"></param>
+        /// <param name="RecordId"></param>
         /// <returns></returns>
-        [HttpPost, Route("LineFt")]
-        public IActionResult LineFt(int vehicleId)
+        [HttpPost, Route("Tireuseft")]
+        public IActionResult Tireuseft(int RecordId)
         {
             try
             {
-                PathModel list = dal_l.LineFt(vehicleId);
+                TyreModel list = dal_l.TireuseFt(RecordId);
                 if (list != null)
                 {
                     return Ok(list);
@@ -669,16 +672,16 @@ namespace TMS.Controllers
             }
         }
         /// <summary>
-        /// 线路修改
+        /// 轮胎使用记录修改
         /// </summary>
         /// <param name="vm"></param>
         /// <returns></returns>
-        [HttpPost, Route("LineEdit")]
-        public IActionResult LineEdit(PathModel vm)
+        [HttpPost, Route("TireuseEdit")]
+        public IActionResult TireuseEdit(TyreModel vm)
         {
             try
             {
-                int list = dal_l.LineEdit(vm);
+                int list = dal_l.TireuseEdit(vm);
                 if (list != 0)
                 {
                     return Ok("添加成功");
@@ -695,16 +698,16 @@ namespace TMS.Controllers
             }
         }
         /// <summary>
-        /// 线路删除
+        /// 轮胎使用记录删除
         /// </summary>
-        /// <param name="vehicleId"></param>
+        /// <param name="RecordId"></param>
         /// <returns></returns>
-        [HttpPost, Route("LineDel")]
-        public IActionResult LineDel(int vehicleId)
+        [HttpPost, Route("TireuseDel")]
+        public IActionResult TireuseDel(int RecordId)
         {
             try
             {
-                int list = dal_l.LineDel(vehicleId);
+                int list = dal_l.TireuseDel(RecordId);
                 if (list != 0)
                 {
                     return Ok("删除成功");
@@ -721,7 +724,6 @@ namespace TMS.Controllers
             }
         }
         #endregion
-
 
     }
 }

@@ -7,8 +7,9 @@ using TMS.Model;
 using TMS.Repository;
 using DataCommon;
 using TMS.IRepository;
+using TMS.IRepository.Basics;
 
-namespace TMS.Repository
+namespace TMS.Repository.Basics
 {
     /// <summary>
     /// 车辆管理

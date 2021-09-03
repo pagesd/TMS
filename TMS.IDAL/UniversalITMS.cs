@@ -8,6 +8,9 @@ using TMS.IRepository;
 
 namespace TMS.IRepository
 {
+    /// <summary>
+    /// 通用合同
+    /// </summary>
     public interface UniversalITMS : TMSIRepository<UniversalModel>
     {
 
@@ -24,6 +27,11 @@ namespace TMS.IRepository
         int UniversalEdit(UniversalModel vm);
         //修改状态
         int UniversalEdit1(int id);
+        //审批
+        //通过
+        int UniversalEditTG(int id);
+        //拒绝
+        int UniversalEditJJ(int id);
         //#endregion
 
     }

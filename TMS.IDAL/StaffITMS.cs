@@ -10,7 +10,7 @@ namespace TMS.IRepository
     /// <summary>
     /// 人事
     /// </summary>
-    public interface StaffITMS
+    public interface StaffITMS : TMSIRepository<StaffModel>
     {
         //显示
         List<StaffModel> StaffShow();
