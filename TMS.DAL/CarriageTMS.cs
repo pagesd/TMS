@@ -36,14 +36,14 @@ namespace TMS.Repository
 
         public int CarriageEdit1(int id)
         {
-            string sql = "update carriagecontract set state=1 where id=@id";
+            string sql = "update carriagecontract set state=2 where id=@id";
             int list = Dapper<CarriagecontractModel>.RUD(sql, new { @id = id });
             return list;
         }
         //审批通过
         public int CarriageEditTG(int id)
         {
-            string sql = "update carriagecontract set state=2 where id=@id";
+            string sql = "update carriagecontract set state=3 where id=@id";
             int list = Dapper<CarriagecontractModel>.RUD(sql, new { @id = id });
             return list;
         }

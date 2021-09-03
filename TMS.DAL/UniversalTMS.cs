@@ -10,6 +10,9 @@ using TMS.IRepository;
 
 namespace TMS.Repository
 {
+    /// <summary>
+    /// 通用合同
+    /// </summary>
     public class UniversalTMS : TMSRepository<UniversalModel>, UniversalITMS
     {
         #region//通用合同管理
@@ -40,7 +43,20 @@ namespace TMS.Repository
             int list = Dapper<UniversalModel>.RUD(sql, new { @id = id });
             return list;
         }
-
+        //审批通过
+        public int UniversalEditTG(int id)
+        {
+            string sql = "update generalcontract set state=2 where id=@id";
+            int list = Dapper<UniversalModel>.RUD(sql, new { @id = id });
+            return list;
+        }
+        //审批拒绝
+        public int UniversalEditJJ(int id)
+        {
+            string sql = "update generalcontract set state=3 where id=@id";
+            int list = Dapper<UniversalModel>.RUD(sql, new { @id = id });
+            return list;
+        }
         public UniversalModel UniversalFt(int id)
         {
             string sql = "select * from generalcontract where id=@id";
