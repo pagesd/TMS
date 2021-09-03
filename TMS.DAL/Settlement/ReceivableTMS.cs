@@ -10,8 +10,11 @@ using TMS.IRepository;
 using TMS.Model.Settlement;
 using TMS.IRepository.Settlement;
 
-namespace TMS.Repository
+namespace TMS.Repository.Settlement
 {
+    /// <summary>
+    /// 结算   应收
+    /// </summary>
     public class ReceivableTMS : TMSRepository<ReceivableModel>, ReceivableITMS
     {
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TMS.Model;
 using TMS.IRepository;
 
-namespace TMS.IRepository
+namespace TMS.IRepository.Basics
 {
     /// <summary>
     /// 车辆管理

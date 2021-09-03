@@ -14,7 +14,7 @@
             //承运/货主
             </summary>
         </member>
-        <member name="M:TMS.Controllers.ApproveController.#ctor(TMS.IRepository.CarriageITMS)">
+        <member name="M:TMS.Controllers.ApproveController.#ctor(TMS.IRepository.CarriageITMS,TMS.IRepository.Settlement.HandleITMS,TMS.IRepository.UniversalITMS)">
             <summary>
             通用合同
             </summary>
@@ -41,16 +41,83 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:TMS.Controllers.ApproveController.CarriageShow">
+            <summary>
+            承运显示
+            </summary>
+            <param></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ApproveController.CarriageEditTG(System.Int32)">
+            <summary>
+            承运审核成功
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ApproveController.CarriageEditJJ(System.Int32)">
+            <summary>
+            承运审核失败
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ApproveController.HandleShow">
+            <summary>
+            付款显示
+            </summary>
+            <param></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ApproveController.HandleEditTG(System.Int32)">
+            <summary>
+            付款审核成功
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ApproveController.HandleEditJJ(System.Int32)">
+            <summary>
+            付款审核失败
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ApproveController.UniversalShow">
+            <summary>
+            通用合同显示
+            </summary>
+            <param></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ApproveController.UniversalEditTG(System.Int32)">
+            <summary>
+            通用合同审核成功
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.ApproveController.UniversalEditJJ(System.Int32)">
+            <summary>
+            通用合同审核失败
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:TMS.Controllers.BaseController">
             <summary>
             基础
             </summary>
         </member>
-        <member name="M:TMS.Controllers.BaseController.#ctor(TMS.IRepository.BaseITMS)">
+        <member name="M:TMS.Controllers.BaseController.#ctor(TMS.IRepository.Basics.BaseITMS,TMS.IRepository.Basics.CargoownerITMS,TMS.IRepository.Basics.OutsourcingITMS,TMS.IRepository.Basics.FuelcostsITMS,TMS.IRepository.Basics.LineITMS)">
             <summary>
             
             </summary>
             <param name="_dal"></param>
+            <param name="c_dal"></param>
+            <param name="o_dal"></param>
+            <param name="f_dal"></param>
+            <param name="l_dal"></param>
         </member>
         <member name="M:TMS.Controllers.BaseController.vehicleShow">
             <summary>
@@ -83,6 +150,146 @@
         <member name="M:TMS.Controllers.BaseController.vehicleDel(System.Int32)">
             <summary>
             车辆删除
+            </summary>
+            <param name="vehicleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.BaseController.CargoownerShow">
+            <summary>
+            货主显示
+            </summary>
+            <param></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.BaseController.CargoownerAdd(TMS.Model.ShipperModel)">
+            <summary>
+            货主添加
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.BaseController.CargoownerFt(System.Int32)">
+            <summary>
+            货主反添
+            </summary>
+            <param name="vehicleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.BaseController.CargoownerEdit(TMS.Model.ShipperModel)">
+            <summary>
+            货主修改
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.BaseController.CargoownerDel(System.Int32)">
+            <summary>
+            货主删除
+            </summary>
+            <param name="vehicleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.BaseController.OutsourcingShow">
+            <summary>
+            货主显示
+            </summary>
+            <param></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.BaseController.OutsourcingAdd(TMS.Model.OutsourceModel)">
+            <summary>
+            外协添加
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.BaseController.OutsourcingFt(System.Int32)">
+            <summary>
+            外协反添
+            </summary>
+            <param name="vehicleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.BaseController.OutsourcingEdit(TMS.Model.OutsourceModel)">
+            <summary>
+            外协修改
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.BaseController.OutsourcingDel(System.Int32)">
+            <summary>
+            外协删除
+            </summary>
+            <param name="vehicleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.BaseController.FuelcostsShow">
+            <summary>
+            油费显示
+            </summary>
+            <param></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.BaseController.FuelcostsAdd(TMS.Model.FuelModel)">
+            <summary>
+            油费添加
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.BaseController.FuelcostsFt(System.Int32)">
+            <summary>
+            油费反添
+            </summary>
+            <param name="vehicleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.BaseController.FuelcostsEdit(TMS.Model.FuelModel)">
+            <summary>
+            油费修改
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.BaseController.FuelcostsDel(System.Int32)">
+            <summary>
+            油费删除
+            </summary>
+            <param name="vehicleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.BaseController.LineShow">
+            <summary>
+            线路显示
+            </summary>
+            <param></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.BaseController.LineAdd(TMS.Model.PathModel)">
+            <summary>
+            线路添加
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.BaseController.LineFt(System.Int32)">
+            <summary>
+            线路反添
+            </summary>
+            <param name="vehicleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.BaseController.LineEdit(TMS.Model.PathModel)">
+            <summary>
+            线路修改
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.BaseController.LineDel(System.Int32)">
+            <summary>
+            线路删除
             </summary>
             <param name="vehicleId"></param>
             <returns></returns>
@@ -257,6 +464,11 @@
             <param name="pwd"></param>
             <returns></returns>
         </member>
+        <member name="T:TMS.Controllers.MaintainController">
+            <summary>
+            维护
+            </summary>
+        </member>
         <member name="T:TMS.Controllers.PersonnelController">
             <summary>
             人事
@@ -356,6 +568,137 @@
         <member name="M:TMS.Controllers.ReceivingController.ReceivingEdit1(System.Int32)">
             <summary>
             状态修改
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TMS.Controllers.SettlementController">
+            <summary>
+            结算
+            </summary>
+        </member>
+        <member name="M:TMS.Controllers.SettlementController.#ctor(TMS.IRepository.Settlement.ReceivableITMS,TMS.IRepository.Settlement.LnputinvoiceITMS,TMS.IRepository.Settlement.HandleITMS)">
+            <summary>
+            
+            </summary>
+            <param name="_dal"></param>
+            <param name="l_dal"></param>
+        </member>
+        <member name="M:TMS.Controllers.SettlementController.ReceivableShow">
+            <summary>
+            应收费用显示
+            </summary>
+            <param></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SettlementController.ReceivableAdd(TMS.Model.Settlement.ReceivableModel)">
+            <summary>
+            应收费用添加
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SettlementController.Receivableft(System.Int32)">
+            <summary>
+            应收费用反添
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SettlementController.ReceivableEdit(TMS.Model.Settlement.ReceivableModel)">
+            <summary>
+            应收费用修改
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SettlementController.ReceivableDel(System.Int32)">
+            <summary>
+            应收费用删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SettlementController.ReceivableEdit1(System.Int32)">
+            <summary>
+            应收费用状态修改
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SettlementController.LnputinvoiceShow">
+            <summary>
+            进项费用显示
+            </summary>
+            <param></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SettlementController.LnputinvoiceAdd(TMS.Model.Settlement.CourseModel)">
+            <summary>
+            进项费用添加
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SettlementController.Lnputinvoiceft(System.Int32)">
+            <summary>
+            进项费用反添
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SettlementController.LnputinvoiceEdit(TMS.Model.Settlement.CourseModel)">
+            <summary>
+            进项费用修改
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SettlementController.LnputinvoiceDel(System.Int32)">
+            <summary>
+            进项费用删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SettlementController.HandleShow">
+            <summary>
+            付款费用显示
+            </summary>
+            <param></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SettlementController.HandleAdd(TMS.Model.Settlement.PaymentModel)">
+            <summary>
+            付款费用添加
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SettlementController.Handleft(System.Int32)">
+            <summary>
+            付款费用反添
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SettlementController.HandleEdit(TMS.Model.Settlement.PaymentModel)">
+            <summary>
+            付款费用修改
+            </summary>
+            <param name="vm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SettlementController.HandleDel(System.Int32)">
+            <summary>
+            付款费用删除
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.Controllers.SettlementController.HandleEdit1(System.Int32)">
+            <summary>
+            付款费用状态修改
             </summary>
             <param name="id"></param>
             <returns></returns>
